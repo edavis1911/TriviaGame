@@ -49,7 +49,7 @@ var theClock;
 var correctTally = 0;
 var incorrectTally = 0;
 var unansweredTally = 0;
-var clickSound = new Audio("assets/audio/introMusic.mp3");
+
 
 // Creates the start button and initial screen
 $(document).ready(function() {
@@ -65,8 +65,7 @@ $(document).ready(function() {
 //When start button is clicked, start the trivia game and countdown timer
 
 $("body").on("click", ".start-button", function(event){
-	event.preventDefault();  
-	clickSound.play();
+	loopAudio();
 	generateHTML();
 	timerWrapper();
 	
@@ -92,7 +91,7 @@ $("body").on("click", ".reset-button", function(event){
 	resetGame();
 }); 
 
-});  
+});  .
 
 // Shows the correct answer and correct ansswer .gif if the player fails to answer the quiz question within the time alloted.   
 function generateLossDueToTimeOut() {
@@ -108,6 +107,13 @@ function generateWin() {
 	gameHTML = "<p class='text-center'>Correct! The answer is: " + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
 	$(".mainArea").html(gameHTML);
 	setTimeout(wait, 4500); 
+}
+
+// Loops the awesomeness that is the Breaking Bad Theme music
+function loopAudio(){
+	myAudio = new Audio("assets/audio/introMusic.mp3");
+	myAudio.loop = true;
+	myAudio.play();
 }
 
 // Informs the player that they chose the wrong answer, informs them of the correct answer and displays .gif for the correct answer
@@ -165,5 +171,6 @@ function resetGame() {
 	counter = 30;
 	generateHTML();
 	timerWrapper();
+	loopAudio();
 }
 
