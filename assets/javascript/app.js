@@ -21,7 +21,7 @@ var answerArray = [
 ["House", "RV", "Warehouse", "Bus"], 
 ["Bridgette","Jane","Marie","Skylar"], 
 ["Don Juan", "Tuco Salamanca", "Gus Fring", "Juan Bolsa"], 
-["Fuliminated Mercury","Ferminated Sulphur","Fossilized Carbon","Fusilated Hydrogen"]];
+["Fulminated Mercury","Ferminated Sulphur","Fossilized Carbon","Fusilated Hydrogen"]];
 
 var imageArray = 
 ["<img class='center-block img-right' src='assets/images/gifs/badger.webp'>", 
@@ -51,28 +51,28 @@ var incorrectTally = 0;
 var unansweredTally = 0;
 var clickSound = new Audio("sound/button-click.mp3");
 
-// Create a function that creates the start button and initial screen
+// Creates the start button and initial screen
 $(document).ready(function() {
 
 
-function initialScreen() {
-	startScreen = "<p class='text-center btn-custom main-button-container'><a class='btn btn-primary btn-lg btn-block start-button' href='#' role='button'>Start Quiz</a></p>";
-	$(".mainArea").html(startScreen);
-}
+	function initialScreen() {
+		startScreen = "<p class='text-center btn-custom main-button-container'><a class='btn btn-primary btn-lg btn-block start-button' href='#' role='button'>Start Quiz</a></p>";
+		$(".mainArea").html(startScreen);
+	}
 
-initialScreen();
+	initialScreen();
 
-//Create a function, generateHTML(), that is triggered by the start button, and generates the HTML seen on the project video...
+//When start button is clicked, start the trivia game and countdown timer
 
 $("body").on("click", ".start-button", function(event){
 	event.preventDefault();  
-	clickSound.play();
 	generateHTML();
-
 	timerWrapper();
 
-}); // Closes start-button click
+}); 
 
+
+// Checks answer againt the correct answer.  If the correct answer is chosen, reset the timer and execute the correct answer function.  
 $("body").on("click", ".answer", function(event){
 	clickSound.play();
 	selectedAnswer = $(this).text();
@@ -80,57 +80,63 @@ $("body").on("click", ".answer", function(event){
 		clearInterval(theClock);
 		generateWin();
 	}
+	// If the correct answer is not chosen, reset the timer and execute the wrong answer chosen function
 	else {
 		clearInterval(theClock);
 		generateLoss();
 	}
 });
 
+// When the reset button is clicked, execute the reset button function
 $("body").on("click", ".reset-button", function(event){
-	clickSound.play();
 	resetGame();
 }); 
 
 });  
 
+// Shows the correct answer and correct ansswer .gif if the player fails to answer the quiz question within the time alloted.   
 function generateLossDueToTimeOut() {
 	unansweredTally++;
-	gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + correctAnswers[questionCounter] + "</p>"  + imageArray[questionCounter];
+	gameHTML = "<p class='text-center'>You ran out of time!  The correct answer was: " + correctAnswers[questionCounter] + "</p>"  + imageArray[questionCounter];
 	$(".mainArea").html(gameHTML);
 	setTimeout(wait, 4500); 
 }
 
+// Informs the player that the answer is correct and shows .gif for the correct answer.
 function generateWin() {
 	correctTally++;
-	gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
+	gameHTML = "<p class='text-center'>Correct! The answer is: " + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
 	$(".mainArea").html(gameHTML);
 	setTimeout(wait, 4500); 
 }
 
+// Informs the player that they chose the wrong answer, informs them of the correct answer and displays .gif for the correct answer
 function generateLoss() {
 	incorrectTally++;
-	gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Wrong! The correct answer is: "+ correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
+	gameHTML = "<p class='text-center'>Wrong! The correct answer is: "+ correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
 	$(".mainArea").html(gameHTML);
 	setTimeout(wait, 4500);
 }
 
+// Trivia Game logic.   
 function generateHTML() {
 	gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>30</span></p><p class='text-center'>" + questionArray[questionCounter] + "</p><p class='first-answer answer'>A. " + answerArray[questionCounter][0] + "</p><p class='answer'>B. "+answerArray[questionCounter][1]+"</p><p class='answer'>C. "+answerArray[questionCounter][2]+"</p><p class='answer'>D. "+answerArray[questionCounter][3]+"</p>";
 	$(".mainArea").html(gameHTML);
 }
 
+// Moves the game through the questions and possible answers until the player has answered all questions
 function wait() {
 	if (questionCounter < 7) {
-	questionCounter++;
-	generateHTML();
-	counter = 30;
-	timerWrapper();
+		questionCounter++;
+		generateHTML();
+		counter = 30;
+		timerWrapper();
 	}
 	else {
 		finalScreen();
 	}
 }
-
+// Timer function
 function timerWrapper() {
 	theClock = setInterval(thirtySeconds, 1000);
 	function thirtySeconds() {
@@ -145,11 +151,12 @@ function timerWrapper() {
 	}
 }
 
+// Displays once all questions have been answered
 function finalScreen() {
-	gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>All done, here's how you did!" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correctTally + "</p>" + "<p>Wrong Answers: " + incorrectTally + "</p>" + "<p>Unanswered: " + unansweredTally + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-primary btn-lg btn-block reset-button' href='#' role='button'>Reset The Quiz!</a></p>";
+	gameHTML = "<p class='text-center'>All done, here's how you did!" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correctTally + "</p>" + "<p>Wrong Answers: " + incorrectTally + "</p>" + "<p>Unanswered: " + unansweredTally + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-primary btn-lg btn-block reset-button' href='#' role='button'>Reset The Quiz!</a></p>";
 	$(".mainArea").html(gameHTML);
 }
-
+// Reset the game 
 function resetGame() {
 	questionCounter = 0;
 	correctTally = 0;
