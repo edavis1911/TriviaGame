@@ -70,18 +70,6 @@ body{
   font-size: 50px;
    }
 
-/*.btn-primary:active,{
-  background-: #000;
-  border-color: #9F418F;
-}
-
-
-
-.btn-primary:hover, .btn-primary:focus,  .btn-primary.active, .open .dropdown-toggle.btn-primary {
-
-  background-color: #A6A8C1;
-  border-color: #31347B;
- }*/
 
 .btn, .btn-primary {
   background-: white;

@@ -49,7 +49,7 @@ var theClock;
 var correctTally = 0;
 var incorrectTally = 0;
 var unansweredTally = 0;
-var clickSound = new Audio("sound/button-click.mp3");
+var clickSound = new Audio("assets/audio/introMusic.mp3");
 
 // Creates the start button and initial screen
 $(document).ready(function() {
@@ -66,15 +66,15 @@ $(document).ready(function() {
 
 $("body").on("click", ".start-button", function(event){
 	event.preventDefault();  
+	clickSound.play();
 	generateHTML();
 	timerWrapper();
-
+	
 }); 
 
 
 // Checks answer againt the correct answer.  If the correct answer is chosen, reset the timer and execute the correct answer function.  
 $("body").on("click", ".answer", function(event){
-	clickSound.play();
 	selectedAnswer = $(this).text();
 	if(selectedAnswer === correctAnswers[questionCounter]) {
 		clearInterval(theClock);
