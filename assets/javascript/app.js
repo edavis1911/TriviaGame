@@ -20,7 +20,7 @@ var answerArray = [
 ["Gus Fring","Saul Goodman","Hank Schrader","Jesse Pinkman"], 
 ["House", "RV", "Warehouse", "Bus"], 
 ["Bridgette","Jane","Marie","Skylar"], 
-["Don Juan", "Tuco Salamanca", "Gus Fring", ""], 
+["Don Juan", "Tuco Salamanca", "Gus Fring", "Juan Bolsa"], 
 ["Fuliminated Mercury","Ferminated Sulphur","Fossilized Carbon","Fusilated Hydrogen"]];
 
 var imageArray = 
