@@ -91,7 +91,7 @@ $("body").on("click", ".reset-button", function(event){
 	resetGame();
 }); 
 
-});  .
+});  
 
 // Shows the correct answer and correct ansswer .gif if the player fails to answer the quiz question within the time alloted.   
 function generateLossDueToTimeOut() {
@@ -126,12 +126,12 @@ function generateLoss() {
 
 // Trivia Game logic.   
 function generateHTML() {
-	gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>30</span></p><p class='text-center'>" + questionArray[questionCounter] + "</p><p class='first-answer answer'>A. " + answerArray[questionCounter][0] + "</p><p class='answer'>B. "+answerArray[questionCounter][1]+"</p><p class='answer'>C. "+answerArray[questionCounter][2]+"</p><p class='answer'>D. "+answerArray[questionCounter][3]+"</p>";
+	gameHTML = "<p class='text-center timer-p questionText'>Time Remaining: <span class='timer'>30</span></p><p class='text-center questionText'>" + questionArray[questionCounter] + "</p><p class='first-answer answer'>A. " + answerArray[questionCounter][0] + "</p><p class='answer'>B. "+answerArray[questionCounter][1]+"</p><p class='answer'>C. "+answerArray[questionCounter][2]+"</p><p class='answer'>D. "+answerArray[questionCounter][3]+"</p>";
 	$(".mainArea").html(gameHTML);
 }
 
 // Moves the game through the questions and possible answers until the player has answered all questions
-function wait() {
+function wait() { 
 	if (questionCounter < 7) {
 		questionCounter++;
 		generateHTML();

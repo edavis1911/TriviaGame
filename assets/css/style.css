@@ -71,6 +71,10 @@ body{
    }
 
 
+.questionText{
+  text-shadow: 2px 2px black;
+}
+
 .btn, .btn-primary {
   background-: white;
   border-color: white;
