@@ -96,7 +96,7 @@ $("body").on("click", ".reset-button", function(event){
 // Shows the correct answer and correct ansswer .gif if the player fails to answer the quiz question within the time alloted.   
 function generateLossDueToTimeOut() {
 	unansweredTally++;
-	gameHTML = "<p class='text-center'>You ran out of time!  The correct answer was: " + correctAnswers[questionCounter] + "</p>"  + imageArray[questionCounter];
+	gameHTML = "<p class='text-center questionText'>You ran out of time!  The correct answer was: " + correctAnswers[questionCounter] + "</p>"  + imageArray[questionCounter];
 	$(".mainArea").html(gameHTML);
 	setTimeout(wait, 4500); 
 }
@@ -104,7 +104,7 @@ function generateLossDueToTimeOut() {
 // Informs the player that the answer is correct and shows .gif for the correct answer.
 function generateWin() {
 	correctTally++;
-	gameHTML = "<p class='text-center'>Correct! The answer is: " + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
+	gameHTML = "<p class='text-center questionText'>Correct! The answer is: " + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
 	$(".mainArea").html(gameHTML);
 	setTimeout(wait, 4500); 
 }
@@ -119,7 +119,7 @@ function loopAudio(){
 // Informs the player that they chose the wrong answer, informs them of the correct answer and displays .gif for the correct answer
 function generateLoss() {
 	incorrectTally++;
-	gameHTML = "<p class='text-center'>Wrong! The correct answer is: "+ correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
+	gameHTML = "<p class='text-center questionText'>Wrong! The correct answer is: "+ correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
 	$(".mainArea").html(gameHTML);
 	setTimeout(wait, 4500);
 }
@@ -159,7 +159,7 @@ function timerWrapper() {
 
 // Displays once all questions have been answered
 function finalScreen() {
-	gameHTML = "<p class='text-center'>All done, here's how you did!" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correctTally + "</p>" + "<p>Wrong Answers: " + incorrectTally + "</p>" + "<p>Unanswered: " + unansweredTally + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-primary btn-lg btn-block reset-button' href='#' role='button'>Reset The Quiz!</a></p>";
+	gameHTML = "<p class='text-center questionText'>All done, here's how you did!" + "</p>" + "<p class='summary-correct questionText'>Correct Answers: " + correctTally + "</p>" + "<p class ='questionText'>Wrong Answers: " + incorrectTally + "</p>" + "<p class='questionText'>Unanswered: " + unansweredTally + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-primary btn-lg btn-block reset-button' href='#' role='button'>Reset The Quiz!</a></p>";
 	$(".mainArea").html(gameHTML);
 }
 // Reset the game 
